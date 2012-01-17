@@ -2,12 +2,19 @@
 
   sencha_touch_slides.controllers.slides = new Ext.Controller({
     show: function(options) {
-      this.slide_index || (this.slide_index = -1);
-      if (options.forward) {
-        this.slide_index += 1;
+      var next_slide, slide_index;
+      if ((options.slide != null)) {
+        sencha_touch.stores.slides.sort('sequence', 'ASC');
+        slide_index = sencha_touch_slides.stores.slides.indexOf(options.slide);
+        if (options.forward != null) {
+          slide_index += 1;
+        } else {
+          slide_index -= 1;
+        }
       } else {
-        this.slide_index -= 1;
+        slide_index = 0;
       }
+      next_slide = sencha_touch_slides.stores.slides.getAt(slide_index);
       return sencha_touch_slides.views.viewport.setActiveItem(sencha_touch_slides.views.viewport.items[this.slide_index]);
     }
   });

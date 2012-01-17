@@ -4,12 +4,15 @@ sencha_touch_slides.controllers.slides = new Ext.Controller(
     # the slides. If it doesn't already exist, set
     # it to zero
 
-    this.slide_index ||= -1
-    
-    if (options.forward)
-      this.slide_index += 1
+    if (options.slide?)
+      sencha_touch.stores.slides.sort('sequence', 'ASC')
+      slide_index = sencha_touch_slides.stores.slides.indexOf(options.slide)
+      
+      if options.forward? then slide_index += 1 else slide_index -= 1
     else
-      this.slide_index -= 1
+      slide_index = 0
+
+    next_slide = sencha_touch_slides.stores.slides.getAt(slide_index)
 
     sencha_touch_slides.views.viewport.setActiveItem(
       sencha_touch_slides.views.viewport.items[this.slide_index]

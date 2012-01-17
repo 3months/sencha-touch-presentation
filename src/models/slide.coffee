@@ -12,6 +12,10 @@ sencha_touch_slides.models.Slide = Ext.regModel('sencha_touch_slides.models.Slid
     {
       name: 'content',
       type: 'string'
+    },
+    {
+      name: 'sequence',
+      type: 'int'
     }
   ]
 

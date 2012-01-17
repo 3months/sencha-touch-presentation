@@ -1,10 +1,9 @@
-slides: [
-  {
-    title: 'Demo Slide 1',
-    content: '**Demo Content 1**'
-  },
-  {
-    title: 'Demo Slide 2',
-    content: '**Demo Content 2**'
-  }
-]
+{
+  "slides": [
+    {
+      "sequence": 1,
+      "title": "Demo Slide 1",
+      "content": "** Demo Content 1 **"
+    }
+  ]
+}

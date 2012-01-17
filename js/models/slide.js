@@ -8,6 +8,9 @@
       }, {
         name: 'content',
         type: 'string'
+      }, {
+        name: 'sequence',
+        type: 'int'
       }
     ],
     validations: [
