@@ -10,24 +10,42 @@
         items: [
           new Ext.Button({
             text: 'Back',
-            ui: 'back'
+            ui: 'back',
+            listeners: {
+              tap: function() {
+                return Ext.dispatch({
+                  controller: sencha_touch_slides.controllers.slides,
+                  action: 'show',
+                  slide: sencha_touch_slides.views.slideDisplay.items.first().record
+                });
+              }
+            }
           }), new Ext.Spacer(), new Ext.Button({
             text: 'Forward',
-            ui: 'forward'
+            ui: 'forward',
+            listeners: {
+              tap: function() {
+                return Ext.dispatch({
+                  controller: sencha_touch_slides.controllers.slides,
+                  action: 'show',
+                  slide: sencha_touch_slides.views.slideDisplay.items.first().record,
+                  forward: true
+                });
+              }
+            }
           })
         ]
       })
     ],
     items: [
-      new Ext.DataView({
-        store: sencha_touch_slides.stores.slides,
+      new Ext.Panel({
         autoHeight: true,
-        itemSelector: 'div.slide',
-        emptyText: 'No slide selected.',
-        tpl: new Ext.XTemplate('<tpl for=".">', '<section class="content">{content_markup}</section>', '</tpl>'),
+        layout: 'fit',
+        tpl: new Ext.XTemplate('<tpl for=".">', '<div class="slide">', '<section class="content">{content_markup}</section>', '</div>', '</tpl>'),
         updateWithRecord: function(record) {
           var toolbar;
-          this.update(record.data);
+          this.record = record;
+          this.update(this.record.data);
           toolbar = sencha_touch_slides.views.slideDisplay.getDockedItems()[0];
           return toolbar.setTitle(record.get('title'));
         }

@@ -9,33 +9,51 @@ sencha_touch_slides.views.SlideDisplay = Ext.extend(Ext.Panel,
       items: [
         new Ext.Button(
           text: 'Back',
-          ui: 'back'
+          ui: 'back',
+          listeners: {
+            tap: ->
+              Ext.dispatch(
+                controller: sencha_touch_slides.controllers.slides
+                action: 'show'
+                slide: sencha_touch_slides.views.slideDisplay.items.first().record
+              )
+          }
         ),
         new Ext.Spacer(),
         new Ext.Button(
           text: 'Forward',
           ui: 'forward',
+          listeners: {
+            tap: ->
+              Ext.dispatch(
+                controller: sencha_touch_slides.controllers.slides,
+                action: 'show',
+                slide: sencha_touch_slides.views.slideDisplay.items.first().record,
+                forward: true
+              )
+          }
         )
       ]
     )
   ]
 
   items: [ 
-    new Ext.DataView(
-      store: sencha_touch_slides.stores.slides,
+    new Ext.Panel(
       autoHeight: true,
-      itemSelector: 'div.slide',
-      emptyText: 'No slide selected.'
+      layout: 'fit',
       tpl: new Ext.XTemplate(
         '<tpl for=".">',
-          '<section class="content">{content_markup}</section>',
+          '<div class="slide">',
+            '<section class="content">{content_markup}</section>',
+          '</div>',
         '</tpl>'
       ),
       
       # This is our own method - we are defining this, because we don't just want
       # to update this component - we also want to change some other things on the opage
       updateWithRecord: (record) ->
-        this.update(record.data)
+        this.record = record
+        this.update(this.record.data)
         toolbar = sencha_touch_slides.views.slideDisplay.getDockedItems()[0]
         toolbar.setTitle(record.get('title'))
     )
