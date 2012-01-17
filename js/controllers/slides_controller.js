@@ -15,7 +15,8 @@
         slide_index = 0;
       }
       next_slide = sencha_touch_slides.stores.slides.getAt(slide_index);
-      return sencha_touch_slides.views.viewport.setActiveItem(sencha_touch_slides.views.viewport.items[this.slide_index]);
+      sencha_touch_slides.views.slideDisplay.items.first().updateWithRecord(next_slide);
+      return sencha_touch_slides.views.viewport.setActiveItem(sencha_touch_slides.views.slideDisplay);
     }
   });
 

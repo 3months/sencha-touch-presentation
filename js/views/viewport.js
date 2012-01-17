@@ -5,11 +5,9 @@
     layout: 'card',
     cardSwitchAnimation: 'slide',
     initComponent: function() {
-      sencha_touch_slides.views.slides = [];
-      sencha_touch_slides.stores.slides.data.each(function(record) {
-        return sencha_touch_slides.views.slides.push(new sencha_touch_slides.views.SlideDisplay().setRecord(record));
+      Ext.apply(sencha_touch_slides.views, {
+        slideDisplay: new sencha_touch_slides.views.SlideDisplay()
       });
-      this.items = [sencha_touch_slides];
       return sencha_touch_slides.views.Viewport.superclass.initComponent.apply(this, arguments);
     }
   });

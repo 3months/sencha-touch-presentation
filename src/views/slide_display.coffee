@@ -1,7 +1,11 @@
 sencha_touch_slides.views.SlideDisplay = Ext.extend(Ext.Panel,
   dockedItems: [
     new Ext.Toolbar(
+      dock: 'top'
+    ),
+    new Ext.Toolbar(
       dock: 'bottom', # <- Attach at bottom of the window
+      ui: 'light',
       items: [
         new Ext.Button(
           text: 'Back',
@@ -14,20 +18,31 @@ sencha_touch_slides.views.SlideDisplay = Ext.extend(Ext.Panel,
         )
       ]
     )
+  ]
+
+  items: [ 
+    new Ext.DataView(
+      store: sencha_touch_slides.stores.slides,
+      autoHeight: true,
+      itemSelector: 'div.slide',
+      emptyText: 'No slide selected.'
+      tpl: new Ext.XTemplate(
+        '<tpl for=".">',
+          '<section class="content">{content_markup}</section>',
+        '</tpl>'
+      ),
+      
+      # This is our own method - we are defining this, because we don't just want
+      # to update this component - we also want to change some other things on the opage
+      updateWithRecord: (record) ->
+        this.update(record.data)
+        toolbar = sencha_touch_slides.views.slideDisplay.getDockedItems()[0]
+        toolbar.setTitle(record.get('title'))
+    )
   ],
 
-  # We use setRecord() in our viewport to load a record into this
-  # view. Because this object is just a dumb panel, we need to
-  # actually handle the display ourselves. What this is demonstrating, 
-  # however, is that any component can be extended with our own behaviour
-  # - in this case, we're going to add code to display the slide within
-  # the panel content area.
-  setRecord: (record) ->
-    this.record = record
-    this.title = record.get('title')
-
-    # We need to return the Panel object (this) 
-    # because we push the returned value of setRecord() onto
-    # the array of viewport items
-    this
+  initComponent: ->
+    # We need to call the superclass of this Panel
+    # to let this loaded event bubble up the tree
+    sencha_touch_slides.views.Viewport.superclass.initComponent.apply(this, arguments)   
 )

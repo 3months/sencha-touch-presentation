@@ -2,10 +2,10 @@ require(
   [
     "application",
     "models/slide",
+    "stores",
     "controllers/slides_controller",
-    "views/viewport",
     "views/slide_list",
     "views/slide_display",
-    "stores"
+    "views/viewport",
   ]
 )

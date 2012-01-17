@@ -16,6 +16,20 @@ sencha_touch_slides.models.Slide = Ext.regModel('sencha_touch_slides.models.Slid
     {
       name: 'sequence',
       type: 'int'
+    },
+    {
+      name: 'content_markup',
+      type: 'string',
+      convert: (v, record) ->
+        # First, let's instantiate our Markdown parser
+        # Showdown, from Attacklabs - the only decent JS implementation
+        # of a Markdown engine - now used by SO
+
+        sencha_touch_slides.models.Slide.markdown_engine ||= new Markdown.getSanitizingConverter()
+
+        # Next, let's parse the 'content' field into markup, and return it
+
+        return sencha_touch_slides.models.Slide.markdown_engine.makeHtml(record.data.content)
     }
   ]
 
@@ -28,4 +42,6 @@ sencha_touch_slides.models.Slide = Ext.regModel('sencha_touch_slides.models.Slid
       name: 'content'
     }
   ]
+
+  # We can define helper methods on our models as we would in any other framework
 )
