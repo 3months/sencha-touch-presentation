@@ -11,6 +11,7 @@
           new Ext.Button({
             text: 'Back',
             ui: 'back',
+            id: 'backbutton',
             listeners: {
               tap: function() {
                 return Ext.dispatch({
@@ -23,6 +24,7 @@
           }), new Ext.Spacer(), new Ext.Button({
             text: 'Forward',
             ui: 'forward',
+            id: 'forwardbutton',
             listeners: {
               tap: function() {
                 return Ext.dispatch({
@@ -41,13 +43,27 @@
       new Ext.Panel({
         autoHeight: true,
         layout: 'fit',
+        styleHtmlContent: true,
         tpl: new Ext.XTemplate('<tpl for=".">', '<div class="slide">', '<section class="content">{content_markup}</section>', '</div>', '</tpl>'),
         updateWithRecord: function(record) {
-          var toolbar;
+          var navbar, parent, toolbar;
           this.record = record;
           this.update(this.record.data);
-          toolbar = sencha_touch_slides.views.slideDisplay.getDockedItems()[0];
-          return toolbar.setTitle(record.get('title'));
+          parent = sencha_touch_slides.views.slideDisplay;
+          toolbar = parent.getDockedItems()[0];
+          toolbar.setTitle(record.get('title'));
+          navbar = parent.getDockedItems()[1];
+          navbar.setTitle("" + (record.get('sequence')) + " of " + (sencha_touch_slides.stores.slides.getCount()));
+          if (record === sencha_touch_slides.stores.slides.first()) {
+            navbar.getComponent('backbutton').disable();
+          } else {
+            navbar.getComponent('backbutton').enable();
+          }
+          if (record === sencha_touch_slides.stores.slides.last()) {
+            return navbar.getComponent('forwardbutton').disable();
+          } else {
+            return navbar.getComponent('forwardbutton').enable();
+          }
         }
       })
     ],

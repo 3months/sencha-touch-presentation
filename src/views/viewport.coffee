@@ -1,7 +1,7 @@
 sencha_touch_slides.views.Viewport = Ext.extend(Ext.Panel,
   fullscreen: true,
   layout: 'card',
-  cardSwitchAnimation: 'slide',
+  cardSwitchAnimation: 'cube',
   initComponent: ->
     Ext.apply(sencha_touch_slides.views, {
       slideDisplay: new sencha_touch_slides.views.SlideDisplay()

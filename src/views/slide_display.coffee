@@ -10,6 +10,7 @@ sencha_touch_slides.views.SlideDisplay = Ext.extend(Ext.Panel,
         new Ext.Button(
           text: 'Back',
           ui: 'back',
+          id: 'backbutton',
           listeners: {
             tap: ->
               Ext.dispatch(
@@ -23,6 +24,7 @@ sencha_touch_slides.views.SlideDisplay = Ext.extend(Ext.Panel,
         new Ext.Button(
           text: 'Forward',
           ui: 'forward',
+          id: 'forwardbutton',
           listeners: {
             tap: ->
               Ext.dispatch(
@@ -41,6 +43,7 @@ sencha_touch_slides.views.SlideDisplay = Ext.extend(Ext.Panel,
     new Ext.Panel(
       autoHeight: true,
       layout: 'fit',
+      styleHtmlContent: true,
       tpl: new Ext.XTemplate(
         '<tpl for=".">',
           '<div class="slide">',
@@ -54,8 +57,25 @@ sencha_touch_slides.views.SlideDisplay = Ext.extend(Ext.Panel,
       updateWithRecord: (record) ->
         this.record = record
         this.update(this.record.data)
-        toolbar = sencha_touch_slides.views.slideDisplay.getDockedItems()[0]
+
+        parent = sencha_touch_slides.views.slideDisplay
+        toolbar = parent.getDockedItems()[0]
         toolbar.setTitle(record.get('title'))
+
+        navbar = parent.getDockedItems()[1]
+        navbar.setTitle(
+          "#{record.get('sequence')} of #{sencha_touch_slides.stores.slides.getCount()}"
+        )
+
+        if (record == sencha_touch_slides.stores.slides.first())
+          navbar.getComponent('backbutton').disable()
+        else
+          navbar.getComponent('backbutton').enable()
+
+        if (record == sencha_touch_slides.stores.slides.last())
+          navbar.getComponent('forwardbutton').disable()
+        else
+          navbar.getComponent('forwardbutton').enable()
     )
   ],
 

@@ -2,6 +2,12 @@
 
   sencha_touch_slides.stores.slides = new Ext.data.Store({
     model: 'sencha_touch_slides.models.Slide',
+    sorters: [
+      {
+        property: 'sequence',
+        direction: 'ASC'
+      }
+    ],
     proxy: {
       type: 'ajax',
       url: 'data/slides.json',
