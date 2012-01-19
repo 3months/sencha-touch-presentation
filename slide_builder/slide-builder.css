@@ -13,6 +13,7 @@
 }
 
 input#title { height: 40px; font-size: 24px; line-height: 30px; }
+input#sequence { height: 25px; font-size: 12px; line-height: 16px; } 
 
 .wmd-button-row 
 {

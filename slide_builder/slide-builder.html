@@ -21,6 +21,14 @@
               <input class="span16" name="title" type="text" id="title" placeholder="No title" />
             </div>
           </div>
+
+          <div class="clearfix">
+            <label for="sequence">Sequence</label>
+            <div class="input">
+              <input class="span8" name="sequence" type="number" id="sequence" placeholder="Enter a numerical sequence" />
+            </div>
+          </div>
+
           <div class="clearfix">
             <label for="content">Content</label>
             <div class="input">
@@ -64,7 +72,8 @@
           event.stopPropagation();
           slide = {
             "title": $('input#title').val(),
-            "contents": $('textarea#wmd-input').val()
+            "contents": $('textarea#wmd-input').val(),
+            "sequence": $('input#sequence').val()
           };
           if (!(slide["contents"] == "" || slide["contents"] == null)) {
             window.slides.push(slide)
