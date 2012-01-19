@@ -12,8 +12,7 @@
       type: 'ajax',
       url: 'data/slides.json',
       reader: {
-        type: 'json',
-        root: 'slides'
+        type: 'json'
       },
       listeners: {
         exception: function(store, response, op) {

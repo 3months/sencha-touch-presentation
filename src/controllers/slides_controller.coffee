@@ -12,7 +12,7 @@ presentation.controllers.slides = new Ext.Controller(
     if (next_slide = presentation.stores.slides.getAt(slide_index))
       # Do nothing
     else
-      next_slide = presentation.stores.slides.first()
+      next_slide = if options.slide? then options.slide else presentation.stores.slides.first()
 
     # Update our slide display
     presentation.views.slideDisplay.items.first().updateWithRecord(next_slide)

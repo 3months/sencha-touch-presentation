@@ -25,7 +25,7 @@ presentation.models.Slide = Ext.regModel('presentation.models.Slide',
         # Showdown, from Attacklabs - the only decent JS implementation
         # of a Markdown engine - now used by SO
 
-        presentation.models.Slide.markdown_engine ||= new Markdown.getSanitizingConverter()
+        presentation.models.Slide.markdown_engine ||= new Markdown.Converter()
 
         # Next, let's parse the 'content' field into markup, and return it
 

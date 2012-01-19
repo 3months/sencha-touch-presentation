@@ -12,7 +12,7 @@
         }
       }
       if ((next_slide = presentation.stores.slides.getAt(slide_index))) {} else {
-        next_slide = presentation.stores.slides.first();
+        next_slide = options.slide != null ? options.slide : presentation.stores.slides.first();
       }
       presentation.views.slideDisplay.items.first().updateWithRecord(next_slide);
       return presentation.views.viewport.setActiveItem(presentation.views.slideDisplay);

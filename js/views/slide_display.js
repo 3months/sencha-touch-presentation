@@ -3,10 +3,13 @@
   presentation.views.SlideDisplay = Ext.extend(Ext.Panel, {
     dockedItems: [
       new Ext.Toolbar({
-        dock: 'top'
+        dock: 'top',
+        ui: 'light',
+        titleCls: 'x-toolbar-title slide-title'
       }), new Ext.Toolbar({
         dock: 'bottom',
-        ui: 'light',
+        titleCls: 'x-toolbar-title slide-count',
+        ui: 'dark',
         items: [
           new Ext.Button({
             text: 'Back',
@@ -41,7 +44,7 @@
     ],
     items: [
       new Ext.Panel({
-        autoHeight: true,
+        fullscreen: true,
         layout: 'fit',
         styleHtmlContent: true,
         tpl: new Ext.XTemplate('<tpl for=".">', '<div class="slide">', '<section class="content">{content_markup}</section>', '</div>', '</tpl>'),
@@ -53,7 +56,7 @@
           toolbar = parent.getDockedItems()[0];
           toolbar.setTitle(record.get('title'));
           navbar = parent.getDockedItems()[1];
-          navbar.setTitle("" + (record.get('sequence')) + " of " + (presentation.stores.slides.getCount()));
+          navbar.setTitle("Slide " + (record.get('sequence')) + " of " + (presentation.stores.slides.getCount()));
           if (record === presentation.stores.slides.first()) {
             navbar.getComponent('backbutton').disable();
           } else {
@@ -68,6 +71,32 @@
       })
     ],
     initComponent: function() {
+      document.addEventListener('keyup', function(event) {
+        var record;
+        record = presentation.views.slideDisplay.items.first().record;
+        switch (event.keyCode) {
+          case 37:
+            return Ext.dispatch({
+              controller: presentation.controllers.slides,
+              action: 'show',
+              slide: record
+            });
+          case 39:
+            return Ext.dispatch({
+              controller: presentation.controllers.slides,
+              action: 'show',
+              slide: record,
+              forward: true
+            });
+          case 32:
+            return Ext.dispatch({
+              controller: presentation.controllers.slides,
+              action: 'show',
+              slide: record,
+              forward: true
+            });
+        }
+      });
       return presentation.views.Viewport.superclass.initComponent.apply(this, arguments);
     }
   });

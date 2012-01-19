@@ -16,7 +16,6 @@ presentation.stores.slides = new Ext.data.Store(
     url: 'data/slides.json',
     reader: {
       type: 'json',
-      root: 'slides'
     },
     listeners: {
       exception: (store, response, op) ->

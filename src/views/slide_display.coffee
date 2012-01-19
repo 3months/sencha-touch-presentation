@@ -1,11 +1,14 @@
 presentation.views.SlideDisplay = Ext.extend(Ext.Panel,
   dockedItems: [
     new Ext.Toolbar(
-      dock: 'top'
+      dock: 'top',
+      ui: 'light',
+      titleCls: 'x-toolbar-title slide-title'
     ),
     new Ext.Toolbar(
       dock: 'bottom', # <- Attach at bottom of the window
-      ui: 'light',
+      titleCls: 'x-toolbar-title slide-count', # <- Give the slide counter it's own class for styling
+      ui: 'dark',
       items: [
         new Ext.Button(
           text: 'Back',
@@ -41,7 +44,7 @@ presentation.views.SlideDisplay = Ext.extend(Ext.Panel,
 
   items: [ 
     new Ext.Panel(
-      autoHeight: true,
+      fullscreen: true,
       layout: 'fit',
       styleHtmlContent: true,
       tpl: new Ext.XTemplate(
@@ -64,7 +67,7 @@ presentation.views.SlideDisplay = Ext.extend(Ext.Panel,
 
         navbar = parent.getDockedItems()[1]
         navbar.setTitle(
-          "#{record.get('sequence')} of #{presentation.stores.slides.getCount()}"
+          "Slide #{record.get('sequence')} of #{presentation.stores.slides.getCount()}"
         )
 
         if (record == presentation.stores.slides.first())
@@ -80,6 +83,36 @@ presentation.views.SlideDisplay = Ext.extend(Ext.Panel,
   ],
 
   initComponent: ->
+    # Panel doesn't support listening directly for keyboard events, because this
+    # framework is intended for Touch devices - key events are only supported on
+    # components where a keyboard would be visible.
+    #
+    # To get around this, listen directly on the document element, and handle
+    # events from there
+    document.addEventListener('keyup', (event) ->
+      record = presentation.views.slideDisplay.items.first().record
+      switch event.keyCode
+        when 37 then Ext.dispatch({
+          controller: presentation.controllers.slides,
+          action: 'show',
+          slide: record,
+        })
+
+        when 39 then Ext.dispatch({
+          controller: presentation.controllers.slides,
+          action: 'show',
+          slide: record,
+          forward: true
+        })
+
+        when 32 then Ext.dispatch({
+          controller: presentation.controllers.slides,
+          action: 'show',
+          slide: record,
+          forward: true
+        })
+    )
+
     # We need to call the superclass of this Panel
     # to let this loaded event bubble up the tree
     presentation.views.Viewport.superclass.initComponent.apply(this, arguments)   

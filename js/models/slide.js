@@ -16,7 +16,7 @@
         type: 'string',
         convert: function(v, record) {
           var _base;
-          (_base = presentation.models.Slide).markdown_engine || (_base.markdown_engine = new Markdown.getSanitizingConverter());
+          (_base = presentation.models.Slide).markdown_engine || (_base.markdown_engine = new Markdown.Converter());
           return presentation.models.Slide.markdown_engine.makeHtml(record.data.content);
         }
       }
