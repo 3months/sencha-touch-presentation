@@ -1,9 +1,9 @@
 Ext.regApplication(
-  name: 'sencha_touch_slides',
+  name: 'presentation',
   launch: ->
-    sencha_touch_slides.views.viewport = new sencha_touch_slides.views.Viewport()
+    presentation.views.viewport = new presentation.views.Viewport()
     Ext.dispatch({
-      controller: sencha_touch_slides.controllers.slides
+      controller: presentation.controllers.slides
       action: 'show'
     })
 )

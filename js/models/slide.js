@@ -1,6 +1,6 @@
 (function() {
 
-  sencha_touch_slides.models.Slide = Ext.regModel('sencha_touch_slides.models.Slide', {
+  presentation.models.Slide = Ext.regModel('presentation.models.Slide', {
     fields: [
       {
         name: 'title',
@@ -16,8 +16,8 @@
         type: 'string',
         convert: function(v, record) {
           var _base;
-          (_base = sencha_touch_slides.models.Slide).markdown_engine || (_base.markdown_engine = new Markdown.getSanitizingConverter());
-          return sencha_touch_slides.models.Slide.markdown_engine.makeHtml(record.data.content);
+          (_base = presentation.models.Slide).markdown_engine || (_base.markdown_engine = new Markdown.getSanitizingConverter());
+          return presentation.models.Slide.markdown_engine.makeHtml(record.data.content);
         }
       }
     ],

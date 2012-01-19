@@ -1,14 +1,14 @@
 (function() {
 
-  sencha_touch_slides.views.Viewport = Ext.extend(Ext.Panel, {
+  presentation.views.Viewport = Ext.extend(Ext.Panel, {
     fullscreen: true,
     layout: 'card',
     cardSwitchAnimation: 'cube',
     initComponent: function() {
-      Ext.apply(sencha_touch_slides.views, {
-        slideDisplay: new sencha_touch_slides.views.SlideDisplay()
+      Ext.apply(presentation.views, {
+        slideDisplay: new presentation.views.SlideDisplay()
       });
-      return sencha_touch_slides.views.Viewport.superclass.initComponent.apply(this, arguments);
+      return presentation.views.Viewport.superclass.initComponent.apply(this, arguments);
     }
   });
 

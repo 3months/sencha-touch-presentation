@@ -1,4 +1,4 @@
-sencha_touch_slides.views.SlideDisplay = Ext.extend(Ext.Panel,
+presentation.views.SlideDisplay = Ext.extend(Ext.Panel,
   dockedItems: [
     new Ext.Toolbar(
       dock: 'top'
@@ -14,9 +14,9 @@ sencha_touch_slides.views.SlideDisplay = Ext.extend(Ext.Panel,
           listeners: {
             tap: ->
               Ext.dispatch(
-                controller: sencha_touch_slides.controllers.slides
+                controller: presentation.controllers.slides
                 action: 'show'
-                slide: sencha_touch_slides.views.slideDisplay.items.first().record
+                slide: presentation.views.slideDisplay.items.first().record
               )
           }
         ),
@@ -28,9 +28,9 @@ sencha_touch_slides.views.SlideDisplay = Ext.extend(Ext.Panel,
           listeners: {
             tap: ->
               Ext.dispatch(
-                controller: sencha_touch_slides.controllers.slides,
+                controller: presentation.controllers.slides,
                 action: 'show',
-                slide: sencha_touch_slides.views.slideDisplay.items.first().record,
+                slide: presentation.views.slideDisplay.items.first().record,
                 forward: true
               )
           }
@@ -58,21 +58,21 @@ sencha_touch_slides.views.SlideDisplay = Ext.extend(Ext.Panel,
         this.record = record
         this.update(this.record.data)
 
-        parent = sencha_touch_slides.views.slideDisplay
+        parent = presentation.views.slideDisplay
         toolbar = parent.getDockedItems()[0]
         toolbar.setTitle(record.get('title'))
 
         navbar = parent.getDockedItems()[1]
         navbar.setTitle(
-          "#{record.get('sequence')} of #{sencha_touch_slides.stores.slides.getCount()}"
+          "#{record.get('sequence')} of #{presentation.stores.slides.getCount()}"
         )
 
-        if (record == sencha_touch_slides.stores.slides.first())
+        if (record == presentation.stores.slides.first())
           navbar.getComponent('backbutton').disable()
         else
           navbar.getComponent('backbutton').enable()
 
-        if (record == sencha_touch_slides.stores.slides.last())
+        if (record == presentation.stores.slides.last())
           navbar.getComponent('forwardbutton').disable()
         else
           navbar.getComponent('forwardbutton').enable()
@@ -82,5 +82,5 @@ sencha_touch_slides.views.SlideDisplay = Ext.extend(Ext.Panel,
   initComponent: ->
     # We need to call the superclass of this Panel
     # to let this loaded event bubble up the tree
-    sencha_touch_slides.views.Viewport.superclass.initComponent.apply(this, arguments)   
+    presentation.views.Viewport.superclass.initComponent.apply(this, arguments)   
 )

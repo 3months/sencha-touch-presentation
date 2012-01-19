@@ -1,7 +1,7 @@
 (function() {
 
-  sencha_touch_slides.views.SlideList = Ext.extend(Ext.List, {
-    store: sencha_touch_slides.stores.slides
+  presentation.views.SlideList = Ext.extend(Ext.List, {
+    store: presentation.stores.slides
   });
 
 }).call(this);

@@ -1,7 +1,7 @@
 (function() {
 
-  sencha_touch_slides.stores.slides = new Ext.data.Store({
-    model: 'sencha_touch_slides.models.Slide',
+  presentation.stores.slides = new Ext.data.Store({
+    model: 'presentation.models.Slide',
     sorters: [
       {
         property: 'sequence',

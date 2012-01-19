@@ -1,6 +1,6 @@
 (function() {
 
-  sencha_touch_slides.views.SlideDisplay = Ext.extend(Ext.Panel, {
+  presentation.views.SlideDisplay = Ext.extend(Ext.Panel, {
     dockedItems: [
       new Ext.Toolbar({
         dock: 'top'
@@ -15,9 +15,9 @@
             listeners: {
               tap: function() {
                 return Ext.dispatch({
-                  controller: sencha_touch_slides.controllers.slides,
+                  controller: presentation.controllers.slides,
                   action: 'show',
-                  slide: sencha_touch_slides.views.slideDisplay.items.first().record
+                  slide: presentation.views.slideDisplay.items.first().record
                 });
               }
             }
@@ -28,9 +28,9 @@
             listeners: {
               tap: function() {
                 return Ext.dispatch({
-                  controller: sencha_touch_slides.controllers.slides,
+                  controller: presentation.controllers.slides,
                   action: 'show',
-                  slide: sencha_touch_slides.views.slideDisplay.items.first().record,
+                  slide: presentation.views.slideDisplay.items.first().record,
                   forward: true
                 });
               }
@@ -49,17 +49,17 @@
           var navbar, parent, toolbar;
           this.record = record;
           this.update(this.record.data);
-          parent = sencha_touch_slides.views.slideDisplay;
+          parent = presentation.views.slideDisplay;
           toolbar = parent.getDockedItems()[0];
           toolbar.setTitle(record.get('title'));
           navbar = parent.getDockedItems()[1];
-          navbar.setTitle("" + (record.get('sequence')) + " of " + (sencha_touch_slides.stores.slides.getCount()));
-          if (record === sencha_touch_slides.stores.slides.first()) {
+          navbar.setTitle("" + (record.get('sequence')) + " of " + (presentation.stores.slides.getCount()));
+          if (record === presentation.stores.slides.first()) {
             navbar.getComponent('backbutton').disable();
           } else {
             navbar.getComponent('backbutton').enable();
           }
-          if (record === sencha_touch_slides.stores.slides.last()) {
+          if (record === presentation.stores.slides.last()) {
             return navbar.getComponent('forwardbutton').disable();
           } else {
             return navbar.getComponent('forwardbutton').enable();
@@ -68,7 +68,7 @@
       })
     ],
     initComponent: function() {
-      return sencha_touch_slides.views.Viewport.superclass.initComponent.apply(this, arguments);
+      return presentation.views.Viewport.superclass.initComponent.apply(this, arguments);
     }
   });
 

@@ -1,4 +1,4 @@
-sencha_touch_slides.models.Slide = Ext.regModel('sencha_touch_slides.models.Slide',
+presentation.models.Slide = Ext.regModel('presentation.models.Slide',
   
   # Define the fields that this model has
   # This exposes them to accessors, get() and set(),
@@ -25,11 +25,11 @@ sencha_touch_slides.models.Slide = Ext.regModel('sencha_touch_slides.models.Slid
         # Showdown, from Attacklabs - the only decent JS implementation
         # of a Markdown engine - now used by SO
 
-        sencha_touch_slides.models.Slide.markdown_engine ||= new Markdown.getSanitizingConverter()
+        presentation.models.Slide.markdown_engine ||= new Markdown.getSanitizingConverter()
 
         # Next, let's parse the 'content' field into markup, and return it
 
-        return sencha_touch_slides.models.Slide.markdown_engine.makeHtml(record.data.content)
+        return presentation.models.Slide.markdown_engine.makeHtml(record.data.content)
     }
   ]
 
