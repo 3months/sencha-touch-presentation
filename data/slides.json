@@ -1,14 +1,47 @@
-{
-  "slides": [
+[
     {
-      "sequence": 1,
-      "title": "Demo Slide 1",
-      "content": "**Demo Content 1**"
+        "title": "Welcome!",
+        "content": "![Sencha Touch Logo][1]\n\n\n  [1]: sencha-large.png",
+        "sequence": "1"
     },
     {
-      "sequence": 2,
-      "title": "Demo Slide 2",
-      "content": "[Demo Slide 2](http://3months.com)"
+        "title": "Introduction",
+        "content": "* Designed for 'touch' apps - mobile, tablet, desktop\n* Only supports WebKit-based browsers (Some support for Firefox, no support for IE)\n* Variety of functionality built-in, both for logic (data), and user interface (components)\n\n",
+        "sequence": "2"
+    },
+    {
+        "title": "Strengths",
+        "content": "* Consuming data from local sources (HTML5 localStorage, JSON file), remote sources (JSONP, AJAX, REST), and custom sources (PhoneGap Contacts API, etc.)\n* Dynamic page components constructed entirely in JavaScript\n* Extensible and clear architecture\n* Well designed, documented, supported and thought out\n",
+        "sequence": "3"
+    },
+    {
+        "title": "Weaknesses",
+        "content": "* Only supporting WebKit makes it unsuitable for a general web application\n* Does have commercial licensing, so must establish whether the open license fits within bounds of what you are doing\n* Some may not like the idea of representing content without markup\n",
+        "sequence": "4"
+    },
+    {
+        "title": "Central Components ",
+        "content": "* Application\n* Viewport\n* Store\n* Model\n* Controller\n* View",
+        "sequence": "5"
+    },
+    {
+        "title": "Why?",
+        "content": "* Cross platform, cross device - nearly all the main quirks are handled for you\n* What about jqMobile and jqTouch? \n    * Very similar in a lot of ways\n    * Both have the same problem - ST forces content in Javascript, jq-variants force too much behaviour into the markup\n * Easily paired with PhoneGap for cross-device apps\n",
+        "sequence": "6"
+    },
+    {
+        "title": "Good For",
+        "content": "* Mobile and tablet applications\n* Prototyping web/mobile/tablet applications\n* Very data-centric touch applications\n",
+        "sequence": "7"
+    },
+    {
+        "title": "Bad For",
+        "content": "* Web applications\n* Applications with a UI that is unique from standard patterns\n* Applications with a lot of content, vs behavior\n",
+        "sequence": "8"
+    },
+    {
+      "title": "Thanks!",
+      "content": "**Slide Application:**\n[https://github.com/joshmcarthur/sencha-touch-presentation](https://github.com/joshmcarthur/sencha-touch-presentation)\n\n**Tools Used:**\n Sencha Touch v1.1 - [http://sencha.com/touch](http://sencha.com/touch), RequireJS - [http://requirejs.org](http://requirejs.org), PageDown - [http://code.google.com/p/pagedown](http://code.google.com/p/pagedown)\n\n**Speaker:**\nJosh McArthur, [http://blog.joshmcarthur.com](http://blog.joshmcarthur.com), [@sudojosh](http://twitter.com/sudojosh)",
+      "sequence": "9"
     }
-  ]
-}
+]
