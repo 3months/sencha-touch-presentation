@@ -1,7 +1,7 @@
 [
     {
         "title": "Welcome!",
-        "content": "![Sencha Touch Logo][1]\n\n\n  [1]: sencha-large.png",
+        "content": "![3Months][1]\n\n\nIntroduction to Sencha Touch\n-----\n\n  [1]: 3months_logo.gif",
         "sequence": "1"
     },
     {
@@ -41,7 +41,7 @@
     },
     {
       "title": "Thanks!",
-      "content": "**Slide Application:**\n[https://github.com/joshmcarthur/sencha-touch-presentation](https://github.com/joshmcarthur/sencha-touch-presentation)\n\n**Tools Used:**\n Sencha Touch v1.1 - [http://sencha.com/touch](http://sencha.com/touch), RequireJS - [http://requirejs.org](http://requirejs.org), PageDown - [http://code.google.com/p/pagedown](http://code.google.com/p/pagedown)\n\n**Speaker:**\nJosh McArthur, [http://blog.joshmcarthur.com](http://blog.joshmcarthur.com), [@sudojosh](http://twitter.com/sudojosh)",
+      "content": "**Slide Application:**\n[https://github.com/3months/sencha-touch-presentation](https://github.com/joshmcarthur/sencha-touch-presentation)\n\n**Tools Used:**\n Sencha Touch v1.1 - [http://sencha.com/touch](http://sencha.com/touch), RequireJS - [http://requirejs.org](http://requirejs.org), PageDown - [http://code.google.com/p/pagedown](http://code.google.com/p/pagedown)\n\n**Speaker:**\nJosh McArthur, [http://blog.joshmcarthur.com](http://blog.joshmcarthur.com), [@sudojosh](http://twitter.com/sudojosh)",
       "sequence": "9"
     }
 ]
